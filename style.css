@@ -265,18 +265,29 @@ select {
 
 section {
 	background-color: hsl(var(--clr-neutral-0));
-	padding: 2rem 1.5rem;
 	margin-block-start: 2rem;
+	padding: 2rem 1.5rem;
 	border-radius: 15px;
 	filter: drop-shadow(0 16px 30px hsla(227, 46%, 51%, 0.2));
+
+	/* desktop */
+	@media (min-width: 768px) {
+		.github-data-wrapper {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			gap: 2rem;
+		}
+	}
 }
 
-/* desktop */
-@media (min-width: 768px) {
-	.github-data-wrapper {
-		display: grid;
-		grid-template-columns: auto 1fr;
-		gap: 2rem;
+.user-avatar {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+
+	@media (min-width: 480px) {
+		width: 117px;
+		height: 117px;
 	}
 }
 
@@ -288,21 +299,26 @@ dl {
 	background-color: hsl(var(--clr-neutral-100));
 	border-radius: 10px;
 	text-align: left;
-	padding: 1rem 2rem;
+	padding: 1rem 1.25rem;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-}
+	gap: 1rem;
 
-dt {
-	font-size: var(--fs-300);
-	color: hsl(var(--clr-neutral-500));
-}
+	@media (min-width: 480px) {
+		padding: 1rem 2rem;
+		grid-template-columns: repeat(3, 1fr);
+	}
 
-dd {
-	font-size: var(--fs-800);
-	font-weight: var(--fw-700);
-	color: hsl(var(--clr-neutral-700));
-	margin: 0;
+	dt {
+		font-size: var(--fs-300);
+		color: hsl(var(--clr-neutral-500));
+	}
+
+	dd {
+		font-size: var(--fs-800);
+		font-weight: var(--fw-700);
+		color: hsl(var(--clr-neutral-700));
+		margin: 0;
+	}
 }
 
 /* ----------------  */
