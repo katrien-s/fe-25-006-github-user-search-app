@@ -23,6 +23,8 @@
 /* ----------------  */
 
 :root {
+	--theme-mode: light;
+
 	--clr-neutral-900: 220 40% 13%;
 	--clr-neutral-800: 222 41% 20%;
 	--clr-neutral-700: 217 21% 21%;
@@ -34,8 +36,19 @@
 
 	--clr-blue-500: 212 100% 50%;
 	--clr-blue-300: 212 100% 69%;
-
 	--clr-red-500: 0 92% 92%;
+
+	/* Semantic Roles — NO hsl() wrapper here */
+	--clr-primary: var(--clr-blue-500);
+	--clr-secondary: var(--clr-neutral-700);
+	--clr-background: var(--clr-neutral-100);
+	--clr-section-background: var(--clr-neutral-0);
+	--clr-text: var(--clr-neutral-500);
+	--clr-text-muted: var(--clr-neutral-200);
+	--clr-text-light: var(--clr-neutral-100);
+	--clr-text-title: var(--clr-neutral-900);
+	--clr-error: var(--clr-red-500);
+	--radio-color: var(--clr-neutral-500);
 
 	--fs-900: 1.625rem;
 	--fs-800: 1.375rem;
@@ -47,15 +60,25 @@
 	--fs-200: 0.8125rem;
 
 	--ff-sans-normal: 'Space Mono', monospace;
-
 	--fw-700: 700;
 	--fw-400: 400;
 }
 
-@media (min-width: 480px) {
-	:root {
-		--fs-700: 1.125rem;
-	}
+.dark {
+	--theme-mode: dark;
+}
+
+:root[style*='--theme-mode: dark'] {
+	--clr-primary: var(--clr-blue-500);
+	--clr-secondary: var(--clr-neutral-0);
+	--clr-background: var(--clr-neutral-900);
+	--clr-section-background: var(--clr-neutral-800);
+	--clr-text: var(--clr-neutral-0);
+	--clr-text-muted: var(--clr-neutral-200);
+	--clr-text-light: var(--clr-neutral-100);
+	--clr-text-title: var(--clr-neutral-0);
+	--clr-error: var(--clr-red-500);
+	--radio-color: var(--clr-neutral-900);
 }
 
 /* ----------------  */
@@ -104,8 +127,8 @@ ul {
 body {
 	font-family: var(--ff-sans-normal);
 	font-size: var(--fs-400);
-	background-color: hsl(var(--clr-neutral-100));
-	color: hsl(var(--clr-neutral-500));
+	background-color: hsl(var(--clr-background));
+	color: hsl(var(--clr-text));
 	line-height: 1.5;
 	min-height: 100vh;
 	display: grid;
@@ -126,8 +149,9 @@ select {
 	font: inherit;
 }
 
-input {
+input[type='search'] {
 	appearance: none;
+	background-color: hsl(var(--clr-section-background));
 }
 
 /* this should remove the x in Safari */
@@ -171,20 +195,20 @@ input[type='search']:not(:focus, :active)::-webkit-search-cancel-button {
 
 /* Color */
 
-.text-neutral-900 {
-	color: hsl(var(--clr-neutral-900));
+.clr-primary {
+	color: hsl(var(--clr-primary));
 }
 
-.text-neutral-700 {
-	color: hsl(var(--clr-neutral-700));
+.clr-secondary {
+	color: hsl(var(--clr-secondary));
 }
 
-.text-neutral-500 {
-	color: hsl(var(--clr-neutral-500));
+.clr-text {
+	color: hsl(var(--clr-text));
 }
 
-.text-blue-500 {
-	color: hsl(var(--clr-blue-500));
+.clr-text-title {
+	color: hsl(var(--clr-text-title));
 }
 
 .opacity-75 {
@@ -256,18 +280,18 @@ input[type='search']:not(:focus, :active)::-webkit-search-cancel-button {
 /* ----------------  */
 
 section {
-	background-color: hsl(var(--clr-neutral-0));
+	background-color: hsl(var(--clr-section-background));
 	margin-block-start: 2rem;
 	padding: 2rem 1.5rem;
 	border-radius: 15px;
-	box-shadow: 0 16px 30px hsla(227, 46%, 51%, 0.2);
+	/* box-shadow: 0 16px 30px hsla(227, 46%, 51%, 0.2); */
 }
 
 .github-card {
-	background-color: hsl(var(--clr-neutral-0));
+	background-color: hsl(var(--clr-section-background));
 	padding: 2rem 1.5rem;
 	border-radius: 15px;
-	filter: drop-shadow(0 16px 30px hsla(227, 46%, 51%, 0.2));
+	/* filter: drop-shadow(0 16px 30px hsla(227, 46%, 51%, 0.2)); */
 	display: grid;
 	grid-template-columns: 70px 1fr;
 	grid-template-areas:
@@ -307,11 +331,11 @@ section {
 	flex-direction: column;
 	font-size: var(--fs-900);
 	font-weight: var(--fw-700);
-	color: hsl(var(--clr-neutral-700));
+	color: hsl(var(--clr-secondary));
 }
 
 .username {
-	color: hsl(var(--clr-blue-500));
+	color: hsl(var(--clr-primary));
 	font-size: var(--fs-600);
 	font-weight: var(--fw-400);
 }
@@ -345,7 +369,7 @@ section {
 }
 
 .user-stats {
-	background-color: hsl(var(--clr-neutral-100));
+	background-color: hsl(var(--clr-background));
 	border-radius: 10px;
 	margin: 0;
 	padding: 1rem 1.25rem;
@@ -356,13 +380,13 @@ section {
 
 dt {
 	font-size: var(--fs-300);
-	color: hsl(var(--clr-neutral-500));
+	color: var(--clr-text);
 }
 
 dd {
 	font-size: var(--fs-800);
 	font-weight: var(--fw-700);
-	color: hsl(var(--clr-neutral-700));
+	color: hsl(var(--clr-secondary));
 	margin: 0;
 }
 
@@ -383,13 +407,53 @@ dd {
 	}
 }
 
-svg {
-	fill: hsl(var(--clr-neutral-900));
-}
-
 /* ----------------  */
 /* Components */
 /* ----------------  */
+
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+/* Theme Toggle */
+
+.color-picker > fieldset {
+	border: 0;
+	display: flex;
+	gap: 2rem;
+	width: fit-content;
+	margin-inline: auto;
+}
+
+.color-picker input[type='radio'] {
+	appearance: none;
+	width: 1rem;
+	height: 1rem;
+	border-radius: 50%;
+	outline: 3px solid var(--radio-color, currentColor);
+	outline-offset: 3px;
+	position: relative;
+	cursor: pointer;
+}
+
+.color-picker input[type='radio']:checked {
+	background-color: var(--radio-color, currentColor);
+}
+
+input[type='radio']#dark {
+	--radio-color: hsl(var(--clr-neutral-900));
+}
+
+input[type='radio']#light {
+	--radio-color: hsl(var(--clr-neutral-500));
+}
+
+:root:has(#dark:checked),
+.dark {
+	--theme-mode: dark;
+}
 
 /* Button */
 
@@ -421,7 +485,7 @@ svg {
 	grid-template-columns: auto 1fr auto;
 	gap: clamp(0.5rem, 2vw, 0.75rem);
 	padding: clamp(0.5rem, 2vw, 0.75rem);
-	background-color: hsl(var(--clr-neutral-0));
+	background-color: hsl(var(--clr-section-background));
 	border-radius: 16px;
 	margin-block-start: 2rem;
 	box-shadow: 0 16px 30px -10px hsla(227, 46%, 51%, 0.2);
@@ -446,5 +510,9 @@ svg {
 
 .search-input::placeholder {
 	font-size: var(--fs-700);
-	color: hsl(var(--clr-neutral-500));
+	color: hsl(var(--clr-text));
+}
+
+.dark .search-input::placeholder {
+	opacity: 0.75;
 }
