@@ -22,10 +22,25 @@
 						<legend class="visually-hidden">
 							Switch between the light and dark theme
 						</legend>
-						<label for="light" class="visually-hidden">light</label>
+						<label for="light" id="light-label" class="visually-hidden"
+							>light</label
+						>
 						<input type="radio" id="light" name="theme" checked />
-						<label for="dark" class="visually-hidden">dark</label>
+						<label for="dark" id="dark-label" class="visually-hidden"
+							>dark</label
+						>
 						<input type="radio" id="dark" name="theme" />
+
+						<button
+							class="theme-toggle"
+							id="theme-toggle"
+							title="Toggle light & dark theme"
+							aria-label="auto"
+							aria-live="polite"
+              data-theme="dark"
+						>
+							dark
+						</button>
 					</fieldset>
 				</form>
 			</header>

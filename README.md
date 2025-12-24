@@ -79,6 +79,7 @@ Use this section to outline areas that you want to continue focusing on in futur
 ### Useful resources
 
 - [How to create a theme switcher with HTML & CSS](https://www.youtube.com/watch?v=fyuao3G-2qg)
+- [Building a theme switch component](https://web.dev/articles/building/a-theme-switch-component)
 
 ## Author
 
