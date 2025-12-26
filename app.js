@@ -2,6 +2,9 @@ const colorThemes = document.querySelectorAll("[name='theme']");
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = document.getElementById('theme-icon');
 
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
+
 const storeTheme = (theme) => {
 	localStorage.setItem('theme', theme);
 };
@@ -83,21 +86,13 @@ themeToggle.addEventListener('keydown', (e) => {
 	}
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-	setTheme();
-	updateToggleUI();
-});
-
 // Fetch Github profile data
-const searchedUser = 'facebook';
-
 async function fetchGitHubData(username) {
 	try {
 		document.getElementById('user-credits').textContent = 'Loading...';
 		const response = await fetch(`https://api.github.com/users/${username}`);
 		const data = await response.json();
 
-		console.log('GitHub data:', data);
 		document.getElementById('avatar').src = data.avatar_url;
 		document.getElementById('user-credits').textContent =
 			data.name || data.login;
@@ -126,4 +121,42 @@ async function fetchGitHubData(username) {
 	}
 }
 
-fetchGitHubData(searchedUser);
+// Get the searched username from the input field
+function handleSearch(e) {
+	e.preventDefault();
+	const searchedUser = searchInput.value.trim();
+
+	if (searchedUser) {
+		fetchGitHubData(searchedUser);
+		searchInput.focus();
+	} else {
+		document.querySelector('.error').style.display = 'block';
+		setTimeout(() => {
+			document.querySelector('.error').style.display = 'none';
+		}, 3000);
+	}
+
+	searchInput.value = '';
+}
+
+searchButton.addEventListener('click', handleSearch);
+
+searchButton.addEventListener('keydown', (e) => {
+	if (e.key === 'Enter' || e.key === ' ') {
+		handleSearch(e);
+	}
+});
+
+searchInput.addEventListener('keydown', (e) => {
+	if (e.key === 'Enter') {
+		e.preventDefault();
+		searchButton.click();
+	}
+});
+
+// Initialize theme and fetch default user data on page load
+document.addEventListener('DOMContentLoaded', () => {
+	setTheme();
+	updateToggleUI();
+	fetchGitHubData('octocat');
+});
