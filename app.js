@@ -125,14 +125,15 @@ async function fetchGitHubData(username) {
 function handleSearch(e) {
 	e.preventDefault();
 	const searchedUser = searchInput.value.trim();
+	const errorMessage = document.querySelector('.error');
 
 	if (searchedUser) {
 		fetchGitHubData(searchedUser);
 		searchInput.focus();
 	} else {
-		document.querySelector('.error').style.display = 'block';
+		errorMessage.style.display = 'block';
 		setTimeout(() => {
-			document.querySelector('.error').style.display = 'none';
+			errorMessage.style.display = 'none';
 		}, 3000);
 	}
 
