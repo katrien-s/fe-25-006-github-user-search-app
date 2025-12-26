@@ -37,7 +37,7 @@
 							title="Toggle light & dark theme"
 							aria-label="auto"
 							aria-live="polite"
-              data-theme="dark"
+							data-theme="dark"
 						>
 							dark
 						</button>
@@ -62,37 +62,40 @@
 					/>
 					<button class="btn" type="submit">Search</button>
 				</form>
-				<section class="github-card">
+				<section class="github-card" id="github-card">
 					<img
 						src="./assets/avatar.jpg"
 						alt="User Avatar"
 						class="user-avatar"
+						id="avatar"
 					/>
 
 					<header class="card-header">
 						<div class="user-main">
-							<p class="user-name">
-								The Octocat
-								<span class="username">@octocat</span>
+							<p class="user-credits">
+								<span id="user-credits">The Octocat</span>
+								<span class="username" id="username">@octocat</span>
 							</p>
-							<p class="join-date">Joined 25 Jan 2011</p>
+							<p class="joined" id="joined">Joined 25 Jan 2011</p>
 						</div>
 					</header>
 
-					<p class="user-bio opacity-75">This profile has no bio</p>
+					<p class="user-bio opacity-75" id="user-bio">
+						This profile has no bio
+					</p>
 
 					<dl class="user-stats">
 						<div>
 							<dt>Repos</dt>
-							<dd>8</dd>
+							<dd id="repos">8</dd>
 						</div>
 						<div>
 							<dt>Followers</dt>
-							<dd>3938</dd>
+							<dd id="followers">3938</dd>
 						</div>
 						<div>
 							<dt>Following</dt>
-							<dd>9</dd>
+							<dd id="following">9</dd>
 						</div>
 					</dl>
 
@@ -106,7 +109,7 @@
 									/>
 								</svg>
 							</span>
-							San Francisco
+							<span id="location">San Francisco</span>
 						</li>
 						<li>
 							<span
@@ -117,7 +120,7 @@
 									/>
 								</svg>
 							</span>
-							Not Available
+							<span id="twitter">Not Available</span>
 						</li>
 						<li>
 							<span>
@@ -132,7 +135,7 @@
 									</g>
 								</svg>
 							</span>
-							https://github.blog
+							<span id="blog">https://github.blog</span>
 						</li>
 						<li>
 							<span>
@@ -144,7 +147,7 @@
 									</g>
 								</svg>
 							</span>
-							@github
+							<span id="company">@github</span>
 						</li>
 					</ul>
 				</section>

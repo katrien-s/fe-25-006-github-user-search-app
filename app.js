@@ -87,3 +87,43 @@ document.addEventListener('DOMContentLoaded', () => {
 	setTheme();
 	updateToggleUI();
 });
+
+// Fetch Github profile data
+const searchedUser = 'facebook';
+
+async function fetchGitHubData(username) {
+	try {
+		document.getElementById('user-credits').textContent = 'Loading...';
+		const response = await fetch(`https://api.github.com/users/${username}`);
+		const data = await response.json();
+
+		console.log('GitHub data:', data);
+		document.getElementById('avatar').src = data.avatar_url;
+		document.getElementById('user-credits').textContent =
+			data.name || data.login;
+		document.getElementById('username').textContent = `@${data.login}`;
+		const joinedDate = new Date(data.created_at);
+		const options = { day: 'numeric', month: 'short', year: 'numeric' };
+		document.getElementById(
+			'joined'
+		).textContent = `Joined ${joinedDate.toLocaleDateString(
+			undefined,
+			options
+		)}`;
+		document.getElementById('user-bio').textContent = data.bio || 'No bio';
+		document.getElementById('repos').textContent = data.public_repos;
+		document.getElementById('followers').textContent = data.followers;
+		document.getElementById('following').textContent = data.following;
+		document.getElementById('location').textContent =
+			data.location || 'Not Available';
+		document.getElementById('twitter').textContent =
+			data.twitter_username || 'Not Available';
+		document.getElementById('blog').textContent = data.blog || 'Not Available';
+		document.getElementById('company').textContent =
+			data.company || 'Not Available';
+	} catch (error) {
+		console.error('Error fetching GitHub data:', error);
+	}
+}
+
+fetchGitHubData(searchedUser);

@@ -338,7 +338,7 @@ section {
 	}
 }
 
-.user-name {
+.user-credits {
 	display: flex;
 	flex-direction: column;
 	font-size: var(--fs-900);
@@ -375,7 +375,7 @@ section {
 		grid-area: avatar;
 	}
 
-	.join-date {
+	.joined {
 		margin-left: auto;
 	}
 }
