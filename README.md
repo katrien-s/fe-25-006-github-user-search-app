@@ -10,6 +10,7 @@ This is a solution to the [GitHub user search app challenge on Frontend Mentor](
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
+  - [Continued Development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
 
@@ -46,6 +47,11 @@ Users should be able to:
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
+
+### Continued Development
+
+- For now the screen flickers a little bit of white before switching to dark mode. I still need to implement a solution for that.
+- I also need to include a backup solution for when GitHub returns an undefined or a 403 in the fetch-request.
 
 ### Useful resources
 
