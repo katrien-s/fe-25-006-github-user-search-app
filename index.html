@@ -10,6 +10,13 @@
 			href="./assets/favicon-32x32.png"
 		/>
 		<link rel="stylesheet" href="style.css" />
+		<script>
+			const activeTheme = localStorage.getItem('theme');
+			if (activeTheme) {
+				document.documentElement.className = activeTheme;
+				document.documentElement.style.setProperty('--theme-mode', activeTheme);
+			}
+		</script>
 		<script src="app.js" defer></script>
 		<title>Frontend Mentor | GitHub user search app</title>
 	</head>
@@ -34,10 +41,9 @@
 						<button
 							class="theme-toggle"
 							id="theme-toggle"
-							title="Toggle light & dark theme"
-							aria-label="auto"
-							aria-live="polite"
-							data-theme="dark"
+							title="Switch to dark theme"
+							aria-label="Switch to dark theme"
+							data-theme="light"
 						>
 							dark
 						</button>
@@ -47,7 +53,7 @@
 			<main>
 				<form class="search-form" role="search">
 					<label id="search-label" class="visually-hidden"
-						>Search GitHub username...</label
+						>GitHub username</label
 					>
 					<span class="search-icon">
 						<svg height="24" width="25" xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +66,7 @@
 					<input
 						class="search-input"
 						type="search"
-						placeholder="Search GitHub username..."
+						placeholder="e.g. octocat"
 						id="search-input"
 						aria-labelledby="search-label"
 					/>
@@ -69,7 +75,7 @@
 					</div>
 					<button
 						class="btn"
-						type="button"
+						type="submit"
 						id="search-button"
 						aria-label="Search GitHub user"
 					>

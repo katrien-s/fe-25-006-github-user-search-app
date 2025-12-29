@@ -1,9 +1,9 @@
 const colorThemes = document.querySelectorAll("[name='theme']");
 const themeToggle = document.getElementById('theme-toggle');
-const themeIcon = document.getElementById('theme-icon');
 
 const searchInput = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button');
+const errorMessage = document.querySelector('.error');
 
 const storeTheme = (theme) => {
 	localStorage.setItem('theme', theme);
@@ -47,21 +47,15 @@ function updateToggleUI() {
 
 	if (activeTheme === 'dark') {
 		themeToggle.innerHTML = `light ${sunSVG}`;
-		themeToggle.setAttribute('data-theme', 'light');
+		themeToggle.setAttribute('data-theme', 'dark');
+		themeToggle.setAttribute('aria-label', 'Switch to light theme');
+		themeToggle.setAttribute('title', 'Switch to light theme');
 	} else {
 		themeToggle.innerHTML = `dark ${moonSVG}`;
-		themeToggle.setAttribute('data-theme', 'dark');
+		themeToggle.setAttribute('data-theme', 'light');
+		themeToggle.setAttribute('aria-label', 'Switch to dark theme');
+		themeToggle.setAttribute('title', 'Switch to dark theme');
 	}
-
-	themeToggle.setAttribute(
-		'aria-label',
-		activeTheme === 'dark' ? 'light' : 'dark'
-	);
-
-	themeToggle.setAttribute(
-		'title',
-		activeTheme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
-	);
 }
 
 themeToggle.addEventListener('click', () => {
@@ -86,11 +80,31 @@ themeToggle.addEventListener('keydown', (e) => {
 	}
 });
 
+// Initialize theme and fetch default user data on page load
+document.addEventListener('DOMContentLoaded', () => {
+	setTheme();
+	updateToggleUI();
+	fetchGitHubData('octocat');
+});
+
+function showErrorMessage() {
+	errorMessage.style.display = 'block';
+	setTimeout(() => {
+		errorMessage.style.display = 'none';
+	}, 3000);
+}
+
 // Fetch Github profile data
 async function fetchGitHubData(username) {
 	try {
 		document.getElementById('user-credits').textContent = 'Loading...';
 		const response = await fetch(`https://api.github.com/users/${username}`);
+
+		if (!response.ok) {
+			showErrorMessage();
+			throw new Error(`User not found or API error: ${response.status}`);
+		}
+
 		const data = await response.json();
 
 		document.getElementById('avatar').src = data.avatar_url;
@@ -117,47 +131,23 @@ async function fetchGitHubData(username) {
 		document.getElementById('company').textContent =
 			data.company || 'Not Available';
 	} catch (error) {
-		console.error('Error fetching GitHub data:', error);
+		console.error(error);
 	}
 }
 
 // Get the searched username from the input field
 function handleSearch(e) {
 	e.preventDefault();
-	const searchedUser = searchInput.value.trim();
-	const errorMessage = document.querySelector('.error');
+	const query = searchInput.value.trim();
 
-	if (searchedUser) {
-		fetchGitHubData(searchedUser);
+	if (query) {
+		fetchGitHubData(query);
 		searchInput.focus();
+		searchInput.value = '';
 	} else {
-		errorMessage.style.display = 'block';
-		setTimeout(() => {
-			errorMessage.style.display = 'none';
-		}, 3000);
+		showErrorMessage();
 	}
-
-	searchInput.value = '';
 }
 
-searchButton.addEventListener('click', handleSearch);
-
-searchButton.addEventListener('keydown', (e) => {
-	if (e.key === 'Enter' || e.key === ' ') {
-		handleSearch(e);
-	}
-});
-
-searchInput.addEventListener('keydown', (e) => {
-	if (e.key === 'Enter') {
-		e.preventDefault();
-		searchButton.click();
-	}
-});
-
-// Initialize theme and fetch default user data on page load
-document.addEventListener('DOMContentLoaded', () => {
-	setTheme();
-	updateToggleUI();
-	fetchGitHubData('octocat');
-});
+const searchForm = document.querySelector('.search-form');
+searchForm.addEventListener('submit', handleSearch);

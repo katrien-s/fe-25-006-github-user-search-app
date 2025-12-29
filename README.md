@@ -14,8 +14,6 @@ This is a solution to the [GitHub user search app challenge on Frontend Mentor](
   - [Useful resources](#useful-resources)
 - [Author](#author)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
