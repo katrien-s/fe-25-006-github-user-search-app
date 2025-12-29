@@ -46,7 +46,8 @@
 							data-theme="light"
 							type="submit"
 						>
-							dark
+							<span class="toggle-text">dark</span>
+							<span class="toggle-icon"></span>
 						</button>
 					</fieldset>
 				</form>
@@ -70,8 +71,9 @@
 						placeholder="e.g. octocat"
 						id="search-input"
 						aria-labelledby="search-label"
+						aria-describedby="error-message"
 					/>
-					<div class="error" id="error-message">
+					<div class="error" id="error-message" aria-live="polite">
 						<span>No results</span>
 					</div>
 					<button
@@ -97,7 +99,7 @@
 								<span id="user-credits">The Octocat</span>
 								<span class="username" id="username">@octocat</span>
 							</p>
-							<p class="joined" id="joined">Joined 25 Jan 2011</p>
+							<p class="joined" id="joined">Joined 25 jan 2011</p>
 						</div>
 					</header>
 
