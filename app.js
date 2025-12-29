@@ -2,7 +2,6 @@ const colorThemes = document.querySelectorAll("[name='theme']");
 const themeToggle = document.getElementById('theme-toggle');
 
 const searchInput = document.getElementById('search-input');
-const searchButton = document.getElementById('search-button');
 const errorMessage = document.querySelector('.error');
 
 const storeTheme = (theme) => {
