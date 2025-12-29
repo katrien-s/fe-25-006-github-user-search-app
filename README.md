@@ -48,8 +48,8 @@ Users should be able to:
 
 ### Continued Development
 
-- For now the screen flickers a little bit of white before switching to dark mode. I still need to implement a solution for that.
-- I also need to include a backup solution for when GitHub returns an undefined or a 403 in the fetch-request.
+- ~~For now the screen flickers a little bit of white before switching to dark mode. I still need to implement a solution for that.~~
+- ~~I also need to include a backup solution for when GitHub returns an undefined or a 403 in the fetch-request.~~
 
 ### Useful resources
 
